@@ -6,7 +6,7 @@ export const Button = ({ icon, children, statebtn, className }) => {
   switch (statebtn) {
     case "normal":
       resultState =
-        "rounded-[30px] bg-primary-gold flex justify-center align-middle text-base fond-medium text-base-900 hover:bg-primary-gold-100 active:bg-primary-gold-50";
+        "rounded-[30px] bg-primary-gold flex justify-center align-middle text-base fond-medium text-base-900 hover:bg-primary-gold-100 active:bg-primary-gold-50 ";
       break;
 
     case "personalise":
@@ -22,11 +22,7 @@ export const Button = ({ icon, children, statebtn, className }) => {
     <>
       <button
         type="button"
-        className={clsx(
-          "w-[405px] py-2 m-auto text-base-dark",
-          resultState,
-          className
-        )}
+        className={clsx("w-[405px] py-2 m-x-auto", resultState, className)}
       >
         {children}
       </button>

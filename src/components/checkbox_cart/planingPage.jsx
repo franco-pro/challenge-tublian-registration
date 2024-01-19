@@ -5,7 +5,7 @@ import { Checkbox } from "./checkbox";
 import { v4 as uuidv4 } from "uuid";
 import { Button } from "../forms/button";
 
-export const PlanningPage = () => {
+export const PlanningPage = ({ action }) => {
   const checkCards = [
     {
       image: "../../../public/images/Team-project.png",
@@ -25,9 +25,9 @@ export const PlanningPage = () => {
   ];
   return (
     <React.Fragment>
-      <div className="container m-auto">
+      <div className="container h-screen">
         <Nav className={"flex justify-between"} />
-        <div className=" mt-10">
+        <div className=" mt-10 flex flex-col justify-center items-center">
           <header className="text-center flex flex-col justify-center gap-[14px] mb-10">
             <h1 className=" text-2xl font-bold text-base-900">
               How are you planning to use Tublian?
@@ -36,7 +36,7 @@ export const PlanningPage = () => {
               We will customize your experience based on your option.
             </p>
           </header>
-          <div className="content  m-auto w-full flex gap-7 mb-10">
+          <div className="flex justify-center content m-auto w-full gap-7 mb-10">
             {checkCards.map((card) => {
               return (
                 <Checkbox
@@ -48,7 +48,9 @@ export const PlanningPage = () => {
               );
             })}
           </div>
-          <Button statebtn={"normal"}>Next</Button>
+          <Button onClick={action} statebtn={"normal"}>
+            Next
+          </Button>
         </div>
       </div>
     </React.Fragment>

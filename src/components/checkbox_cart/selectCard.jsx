@@ -2,16 +2,29 @@ import clsx from "clsx";
 import { Nav } from "../nav/nav";
 import { v4 as uuidv4 } from "uuid";
 import { Button } from "../forms/button";
-import { useState } from "react";
+import { useCallback, useState } from "react";
+import { ChoiceCardPopup } from "../choiceCardPop-up";
+useCallback;
 
 export const SelectCart = () => {
   const [selectPlan, setSelectPlan] = useState("month");
   const handleSelectPlan = (e) => {
     setSelectPlan(e.target.value);
   };
+  const [popUpSelect, setPopUpSelect] = useState(null);
+  const handleButtonClick = (cardid) => {
+    setPopUpSelect(cardid);
+    console.log("data id: ", cardid);
+  };
+
+  const closePopUp = () => {
+    setPopUpSelect(null);
+    console.log("button component A walk");
+  };
   //differents data used in cards
   const dataCards = [
     {
+      id: 1,
       title: "Pro",
       price: "$19.99",
       limit: "/Month",
@@ -27,6 +40,7 @@ export const SelectCart = () => {
       gradient: "bg-gradient-to-t from-[#855FEF] to-[#5435AA]",
     },
     {
+      id: 2,
       title: "Business Plan",
       price: "$49.99",
       limit: "/Month",
@@ -44,6 +58,7 @@ export const SelectCart = () => {
       gradient: "bg-gradient-to-t from-[#0881FF] to-[#0B4F95]",
     },
     {
+      id: 3,
       title: "Enterprise Plan",
       price: "Custom Pricing",
       limit: "",
@@ -66,7 +81,7 @@ export const SelectCart = () => {
     "hover:bg-gradient-to-r hover:from-personalise-yellow hover:to-personalise-indigo";
   return (
     <>
-      <div className="container m-auto">
+      <div className={clsx("container relative")}>
         <Nav className={"flex justify-between"} />
         <header className=" mb-[60px] mt-10">
           <div className="payement_plan w-[379px] h-[96px] flex flex-col flex-wrap gap-y-[14px] m-auto mb-10">
@@ -213,6 +228,9 @@ export const SelectCart = () => {
                     </div>
                   </header>
                   <Button
+                    onClick={() => {
+                      handleButtonClick(data.id);
+                    }}
                     statebtn={"normal"}
                     className={clsx(
                       data.btnColor,
@@ -222,6 +240,15 @@ export const SelectCart = () => {
                   >
                     {data.textbtn}
                   </Button>
+                  {popUpSelect === data.id && (
+                    <ChoiceCardPopup
+                      className={""}
+                      type={data.title}
+                      price={data.price}
+                      time={data.limit}
+                      onclick={closePopUp}
+                    />
+                  )}
                 </div>
               </div>
             );

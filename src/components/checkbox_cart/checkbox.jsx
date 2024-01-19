@@ -30,6 +30,7 @@ export const Checkbox = ({ title, sub_title, image }) => {
         >
           <input
             checked={isChecked}
+            name="check"
             type="checkbox"
             id={uniqueId} // Use the unique ID here
             onChange={handleChangeChecked}

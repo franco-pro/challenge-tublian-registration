@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import clsx from "clsx";
 import { v4 as uuidv4 } from "uuid";
+import { useEffect, useState } from "react";
 
 export const Forms = ({
   children,
@@ -9,7 +10,10 @@ export const Forms = ({
   className,
   label1,
   label2,
+  idInput1,
+  idInput2,
   btn,
+  action,
   socialBtn = false,
 }) => {
   const rules = [
@@ -23,6 +27,18 @@ export const Forms = ({
       rule: "One symbol character",
     },
   ];
+  const [firstName, setFirstName] = useState("");
+  const handleChangeFirstName = (e) => {
+    setFirstName(e.target.value);
+  };
+
+  const [lastName, setLastName] = useState("");
+  const handleChangeLastName = (e) => {
+    setLastName(e.target.value);
+  };
+
+  console.log(firstName, lastName);
+
   return (
     <>
       <header>
@@ -30,7 +46,7 @@ export const Forms = ({
         <p className="text-base-800 pt-2">
           {sub_title}{" "}
           {socialBtn && (
-            <span className=" text-personalise-blue">@John Doe</span>
+            <span className=" text-personalise-blue">@John doe</span>
           )}
         </p>
       </header>
@@ -38,18 +54,22 @@ export const Forms = ({
         <form className="flex flex-col bg-transparent text-base text-base-300 gap-[14px] text-left placeholder:text-base-300 ">
           <div className="firstName flex flex-col">
             <input
+              value={firstName}
+              onChange={handleChangeFirstName}
               type="text"
-              id="firstName"
+              id={idInput1}
               placeholder={label1}
-              className=" outline-personalise pl-4 bg-transparent border-b border-base-300 py-4"
+              className=" outline-none pl-4 bg-transparent border-b border-base-300 py-4"
             />
           </div>
           <div className="lastName flex flex-col">
             <input
               type="text"
-              id="lastName"
+              value={lastName}
+              onChange={handleChangeLastName}
+              id={idInput2}
               placeholder={label2}
-              className="outline-personalise pl-4 bg-transparent border-b border-base-300 py-4"
+              className=" outline-none pl-4 bg-transparent border-b border-base-300 py-4"
             />
             {socialBtn && (
               <div className="rules text-xs flex gap-x-6 flex-wrap text-base-500 pt-2">
@@ -70,6 +90,7 @@ export const Forms = ({
             <button
               type="submit"
               className="py-2 w-full rounded-[30px] text-center bg-primary-gold text-base-dark"
+              onClick={action}
             >
               {btn}
             </button>

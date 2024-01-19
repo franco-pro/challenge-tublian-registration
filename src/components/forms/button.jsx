@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import { Children } from "react";
 
-export const Button = ({ icon, children, statebtn, className }) => {
+export const Button = ({ icon, children, statebtn, className, onClick }) => {
   let resultState = "";
   switch (statebtn) {
     case "normal":
@@ -21,6 +21,7 @@ export const Button = ({ icon, children, statebtn, className }) => {
   return (
     <>
       <button
+        onClick={onClick}
         type="button"
         className={clsx("w-[405px] py-2 m-x-auto", resultState, className)}
       >
